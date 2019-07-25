@@ -1,0 +1,100 @@
+/**
+ * Neon theme for reveal.js
+ * Author: Jeremy Guillette http://github.com/jaguillette
+ *
+ * Based on Blood theme by Walther http://github.com/Walther
+ *
+ */
+
+ // Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Include theme-specific fonts
+
+@import url(https://fonts.googleapis.com/css?family=Bungee+Outline|Roboto:100,400);
+
+// Colors used in the theme
+$pink: #E602B9;
+$blue: #4650f0;
+$purple: #BA03E7;
+$teal: #00C4EE;
+$red: #F90B0C;
+$orange: #ED6B21;
+$coal: #222;
+$codeBackground: #23241f;
+
+$backgroundColor: $coal;
+
+// Main text
+$mainFont: Roboto, 'sans-serif';
+$mainColor: #eee;
+
+// Headings
+$headingColor: $teal;
+$headingFont: "Bungee Outline", 'sans-serif';
+$headingTextShadow: 0px 0px 15px $headingColor, 0px 0px 10px $headingColor, 0px 0px 5px $headingColor;
+
+$heading1TextShadow: $headingTextShadow;
+
+// Links
+$linkColor: $teal;
+$linkColorHover: lighten( $linkColor, 20% );
+
+// Text selection
+$selectionBackgroundColor: $teal;
+$selectionColor: #fff;
+
+// Images
+$imageShadowColor: darken( $purple, 25% );
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// some overrides after theme template import
+
+.reveal {
+  p {
+    font-weight: 300;
+    text-shadow: 1px 1px $coal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+      font-weight: 400;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-shadow: $headingTextShadow;
+  }
+
+  p code {
+      background-color: $codeBackground;
+      display: inline-block;
+      border-radius: 7px;
+  }
+
+  small code {
+      vertical-align: baseline;
+  }
+
+  section {
+    img {
+      max-height: 50vh;
+      box-shadow: 0px 0px 25px $imageShadowColor, 0px 0px 20px $imageShadowColor, 0px 0px 15px $imageShadowColor;
+    }
+  }
+
+  .neon-embed-wrapper {
+    box-shadow: 0px 0px 25px $imageShadowColor, 0px 0px 20px $imageShadowColor, 0px 0px 15px $imageShadowColor;
+  }
+}

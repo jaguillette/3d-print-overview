@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Jeremy Guillette - 3D Printing talk</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/neon.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -25,8 +25,158 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>3D Printing</h1>
+				</section>
+				<section>
+					<h2>Who am I?</h2>
+					<p>Jeremy Guillette</p>
+					<p>Instructional Technologist</p>
+					<p>FAS Academic Technology</p>
+				</section>
+				<section>
+					<section>
+						<h1>Basic Mechanics</h1>
+						<aside class="notes">
+							This is maybe a weird part for me to do, but it'll help everything else make sense if you have a general idea of the mechanics of what's going on with the printer. I've seen some 3D printing demos and introductions that skip this part, and I think it's a bad idea, and you're trapped here my social norms anyways.
+						</aside>
+					</section>
+					<section>
+						<h2>there is a hot glue gun thing*</h2>
+					</section>
+					<section>
+						<figure>
+							<img src="https://www.lpfrg.com/wp-content/uploads/2019/03/EXTRUDER.png" alt="Diagram showing the parts of a 3D printer that the plastic filament goes through. A stepper motor pushes the filament through a heat sink and into a hot end, from which it extrudes.">
+							<figcaption>Source: <a href="https://www.lpfrg.com/guides/3d-printing-concepts-and-3d-printer-parts/">Leapfrog 3D Printers</a></figcaption>
+						</figure>
+						<aside class="notes">
+							A general caveat here, most of the time I'm talking about Fused Deposition Modeling, also known as Fused Filament Fabrication because Stratasys trademarked the first one. This is the hot glue gun style that's the most common, cheap, and desktop-friendly kind of 3D printing. There are also Stereolithography (SLA, for Stereolithography Apparatus), which involves a laser selectively hardening a photoreactive polymer (or goop, if you prefer) to construct an object, and Selective Laser Sintering, which involves shooting a laser into some powder to selectively harden it. Anyway, in FFF printing, this hot glued gun apparatus is what makes the plastic malleable enough to be printed. The goal in any 3D printer is to make the plastic really hot, but only in the print nozzle, not before or after. I've even printed this cool model to help demonstrate how that works. There's this orange bit, which is the nozzle. The gray block would be connected to a heating element and temperature sensor, so that's what makes things hot. It's also connected to a heatbreak, which transfers some of that heat to the heatsink, which is designed to dissipate that heat. A lot of printers, including the one we have, have a dedicated fan for that heat sink to keep the plastic cool and solid before it enters the nozzle.
+						</aside>
+					</section>
+					<section>
+						<h1>Materials</h1>
+						<p><a href="https://www.matterhackers.com/store/c/3d-printer-filament" target="_blank">MatterHackers</a></p>
+						<aside class="notes">
+							There are loads of different materials that are used in 3D printing. The most common, and the easiest to work with, is PLA (polylactic acid), which is a plant-based plastic. There are also ABS (Acrylonitrile Butadiene Styrene), which is stronger, but benefits more from an enclosed print area for temperature and smell control; and PETG (Polyethylene Terephthalate Glycol), which is also stronger than PLA but doesn't smell bad or require an enclosure. It is, however, stickier when heated, so PETG models can come out with a bunch of strings in gaps in the model. There are filaments with different kinds of materials infused in them, from glow-in-the-dark components to wood to metal to carbon fiber. Different filaments have different temperature and nozzle speed needs, and some of the infused filaments can quickly degrade standard 3d printer nozzles. There's a lot of stuff that you can heat up and push through a little nozzle, but different materials will require different tweaks when preparing models for printing.
+						</aside>
+					</section>
+					<section>
+						<h2>It moves in three-dimensional space</h2>
+					</section>
+					<section>
+						<a href="https://grabcad.com/library/prusa-i3-mk3-solidworks-1"><img src="https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1df098ac22db0577fa1b60c88893226f/large.png" alt="Image of a computer rendering of a Prusa i3 mk3 3d printer"></a>
+						<aside class="notes">
+							So this hot glue gun thing can extrude plastic, but what allows us to 3d print models with precision is the apparatus that moves the print head around in 3d space. There are different approaches to this engineering problem, but I'm just going to point out how it works on the Prusa that we have. There are 3 axes that we care about, plus the need to move plastic into the hot end. All of this motion is accomplished with little motors. The file that goes to the printer, a gcode file, is a series of instructions to those motors, telling them how to move to layer plastic to create the object. Objects are created layer by layer, so even if there are multiple objects on the print bed, the printer just layers the whole thing within its print volume. If you think about it, it wouldn't be practical for the printer to print one object, then another, then another, because the extruder is so much larger than the printer, which would limit how you could build objects, and also, doing that wouldn't buy you anything more than the layer by layer method; if you want a single part quickly, print each one one at a time. If you want a bunch of parts without having to do a lot of work yourself, print them all at once and let the printer run for a day or two.
+						</aside>
+					</section>
+					<section>
+						<h2>gravity exists</h2>
+					</section>
+					<section>
+						<img src="https://cdn.thingiverse.com/renders/42/70/d2/52/52/ebaf5862b3f4334706482ad6c5c41899_preview_featured.jpg" alt="">
+						<aside class="notes">
+							This is just a side note that gravity is a limiter on the printer. The printer works by depositing plastic on top of something, but it doesn't harden instantly, and is still subject to gravity, so if you're printing something with a part that goes straight out over nothing, it needs supports. Take this heat sink, for example. I printed it vertically, so each layer of the cooling tower needed supports, which really sucked when it came time to take them out. There is an amount of overhang that each material and printer can tolerate, depending on cooling and material properties of the filament, so you can actually print some interesting stuff without any supports, but you have to be really clever in designing whatever it is.
+						</aside>
+					</section>
+					<section>
+						<h2>In summary:</h2>
+						<p>We need to tell the printer how much to move each motor to print an object, taking into account logistical limitations</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>3d models</h1>
+						<aside class="notes">
+							Now that we know about how the hardware works, let's go all the way to the other end of the pipeline, the digital model of an item to be printed.
+						</aside>
+					</section>
+					<section>
+						<h2>bounded shapes</h2>
+						<aside class="notes">
+							3d model files consist of joined polygons. The ones that we can use for 3d printing consist of polygons that form the boundary of a shape or shapes.
+						</aside>
+					</section>
+					<section>
+						<img src="https://www.researchgate.net/profile/Predrag_Novakovic2/publication/322096576/figure/fig2/AS:631626539229214@1527602910310/3D-mesh-triangles-with-different-resolution-3D-Modelling-for-programmers-Available-at.png" alt="images of four 3d rabbit models composed of triangles, with increasing numbers of triangles in each image.">
+						<aside class="notes">
+							So here's a simple image representing a rabbit at a few different resolutions, all constructed of triangles. Different formats have different ways of representing those triangles in a file, but that's what you'll always find in a 3d mesh, a bunch of connected shapes in space.
+						</aside>
+					</section>
+					<section>
+						<div class="sketchfab-embed-wrapper">
+							<iframe width="640" height="480" src="https://sketchfab.com/models/559078e6d097475f9e456921cd791716/embed" frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true" class="neon-embed-wrapper"></iframe>
+						</div>
+						<aside class="notes">
+							Here's a more complicated viewer so I can talk about more complicated stuff. This is a model of a viking key that I scanned at the Harvard Art Museum. What I want to talk about is the mesh that makes up this model. You can see that it's made up of very tiny triangles when I zoom in. You'll also notice that I can swing the camera into the interior, and see it from the inside. The model is essentially a bounded region of space. I can turn on the view of the normals to show you that each polygon has a direction that it's "facing", enabling the model to have a defined interior and exterior. Good software usually deals with this well enough that you don't have to think about it, but it's one of the things that can go wrong with a model. If the wrong part of the model is "outside", or there isn't good agreement among the polygons on where that is, or if the polygons don't form a solid boundary around a space (the term for this is "watertight", so if a shape wouldn't hold water, it's not "watertight"), then the model can be problematic to print. The software that translates models into printer instructions can cope with some issues, but there's only so much that that software can do.
+						</aside>
+					</section>
+					<section>
+						<h2>Common file formats</h2>
+						<p>STL</p>
+						<p>OBJ</p>
+						<aside class="notes">
+							There are a ton of file formats out there (link on the next slide), but these two are the most common ones you'll find, and the ones with the most compatibility with 3d printing software. If you have a file that isn't in this format, open source software like Meshlab or Blender can usually be used to convert the file. It's also worth noting that these files have units, but they aren't defined in relation to real world measurments within the file. Usually the files you get have units in millimeters, and you don't have to worry because everyone's on the same page, but it's possible to get a model that goes to the printer at the totally wrong scale, which is totally fixable in the software that prepares your model to be printed.
+						</aside>
+					</section>
+					<section>
+						<h2><a href="http://edutechwiki.unige.ch/en/3D_file_format">List of 3d file formats</a></h2>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Slicers</h1>
+						<aside class="notes">
+							I've mentioned that there is more software between the 3d model and the print job a couple of times, so now it's time to talk about that software. This is a class of software called a slicer, because it slices your model or models into thin layers that are also translated into motor movement instructions for your printer. However, this isn't like sending a paper to your printer, where you only have a couple of options. Preparing a model for printing can be very easy, but it can also be something that you spend a lot of time fiddling with. Fortunately, also unlike paper printers, slicers allow you to save print projects, so you can tweak and try again later. The output of a slicer is almost always a gcode file, which contains the instructions for the printer on how to move its motors around to print the model. On our printer, you can put that file on an SD card and print from the printer, or print through the Raspberry Pi that's connected to the printer via the web, as long as you're on the right subnet.
+						</aside>
+					</section>
+					<section>
+						<h1>BASIC</h1>
+						<ul>
+							<li>Import model</li>
+							<li>Check material, layer height, and infill</li>
+							<li>Export gcode</li>
+						</ul>
+						<aside class="notes">
+							If you have a simple, printer-friendly model, printing can be as easy as bringing the model into the slicer, making sure that you're set to the material and layer height that you want, and slicing the model. Everything else I'm going to talk about is assuming that you can't do that for some reason. If you have a model that's designed to be 3d printed, and you're using a material like PLA that's very easy to print, this should be all you need to do. If you're using a new, tricky material, or printing a model that wasn't designed to be printed, you may need to do more fiddling.
+						</aside>
+					</section>
+					<section>
+						<h1>Middlin'</h1>
+						<ul>
+							<li>Import model</li>
+							<li>Adjust model position, rotation, and scale</li>
+							<li>Add support options</li>
+							<li>Check material, layer height, and infill</li>
+							<li>Export gcode</li>
+						</ul>
+						<aside class="notes">
+							If you're working on a model that wasn't made for printing, it might come in at a weird angle, or even a weird scale. Fortunately, slicers all have a way to move your model around before slicing, so you can find the best angle for printing. It's worth noting that the layering of a model creates a "grain" in the finished part, so that the same model can perform differently mechanically and look very different physically depending on the orientation that it's printed in.
+						</aside>
+					</section>
+					<section>
+						<h1>Stare into the abyss</h1>
+						<aside class="notes">
+							In the settings for the slicer that I use, with all available settings visible, there are 16 distinct configuration screens, each with its own set of options for fine-tuning printer output. These pages and pages of settings all do serve a purpose, but more often than not, you won't have to deal with very many of them, if at all. They let you tune things according to issues that you notice in your prints, or according to notes on printing with a particular filament or a particular model.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>FAQs</h1>
+					</section>
+					<section>
+						<h2>What about 3d printed guns?</h2>
+						<p>This <a href="https://www.wired.com/2015/06/i-made-an-untraceable-ar-15-ghost-gun/">Wired article</a> is the most informative that I've read on the topic, and this <a href="https://arstechnica.com/tech-policy/2018/08/3d-printed-and-cnc-milled-guns-10-questions-you-were-too-afraid-to-ask/">Ars Technica article</a> that draws from it has some additional context.</p>
+					</section>
+					<section>
+						<h2>What about other kinds of 3D printers?</h2>
+						<p><a href="#">Formlabs</a> has a pretty good <a href="https://formlabs.com/blog/fdm-vs-sla-vs-sls-how-to-choose-the-right-3d-printing-technology/">guide</a> on the three main 3D printing technologies: FDM, SLA and SLS.</p>
+					</section>
+					<section>
+						<h2 style="font-size: 1.55em;">Do you have a series of links from a high-velocity course on digital manufacturing?</h2>
+						<p>The <a href="http://academy.cba.mit.edu/classes/scanning_printing/index.html">3D printing and scanning page</a> from the MIT course <a href="http://fab.cba.mit.edu/classes/863.18/">"How to make almost anything"</a> is heavy on links, light on context, and a useful reference for a wide variety of 3d tech.</p>
+					</section>
+				</section>
 			</div>
 		</div>
 
