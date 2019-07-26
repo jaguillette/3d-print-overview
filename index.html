@@ -35,6 +35,10 @@
 					<p>FAS Academic Technology</p>
 				</section>
 				<section>
+					<h2>What is this?</h2>
+					<p><a href="https://jaguillette.github.io/3d-print-overview/">jaguillette.github.io/3d-print-overview</a></p>
+				</section>
+				<section>
 					<section>
 						<h1>Basic Mechanics</h1>
 						<aside class="notes">
@@ -61,10 +65,10 @@
 						</aside>
 					</section>
 					<section>
-						<h2>It moves in three-dimensional space</h2>
+						<h2>The hot glue gun moves in three-dimensional space</h2>
 					</section>
 					<section>
-						<a href="https://grabcad.com/library/prusa-i3-mk3-solidworks-1"><img src="https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1df098ac22db0577fa1b60c88893226f/large.png" alt="Image of a computer rendering of a Prusa i3 mk3 3d printer"></a>
+						<a href="https://grabcad.com/library/prusa-i3-mk3-solidworks-1" target="_blank"><img src="https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1df098ac22db0577fa1b60c88893226f/large.png" alt="Image of a computer rendering of a Prusa i3 mk3 3d printer"></a>
 						<aside class="notes">
 							So this hot glue gun thing can extrude plastic, but what allows us to 3d print models with precision is the apparatus that moves the print head around in 3d space. There are different approaches to this engineering problem, but I'm just going to point out how it works on the Prusa that we have. There are 3 axes that we care about, plus the need to move plastic into the hot end. All of this motion is accomplished with little motors. The file that goes to the printer, a gcode file, is a series of instructions to those motors, telling them how to move to layer plastic to create the object. Objects are created layer by layer, so even if there are multiple objects on the print bed, the printer just layers the whole thing within its print volume. If you think about it, it wouldn't be practical for the printer to print one object, then another, then another, because the extruder is so much larger than the printer, which would limit how you could build objects, and also, doing that wouldn't buy you anything more than the layer by layer method; if you want a single part quickly, print each one one at a time. If you want a bunch of parts without having to do a lot of work yourself, print them all at once and let the printer run for a day or two.
 						</aside>
@@ -121,6 +125,14 @@
 					<section>
 						<h2><a href="http://edutechwiki.unige.ch/en/3D_file_format">List of 3d file formats</a></h2>
 					</section>
+					<section>
+						<h2>Modeling software</h2>
+						<ul>
+							<li>Blender (FOSS)</li>
+							<li>Meshlab (FOSS)</li>
+							<li>Fusion 360</li>
+						</ul>
+					</section>
 				</section>
 				<section>
 					<section>
@@ -165,12 +177,21 @@
 						<h1>FAQs</h1>
 					</section>
 					<section>
-						<h2>What about 3d printed guns?</h2>
-						<p>This <a href="https://www.wired.com/2015/06/i-made-an-untraceable-ar-15-ghost-gun/">Wired article</a> is the most informative that I've read on the topic, and this <a href="https://arstechnica.com/tech-policy/2018/08/3d-printed-and-cnc-milled-guns-10-questions-you-were-too-afraid-to-ask/">Ars Technica article</a> that draws from it has some additional context.</p>
+						<h2>Where can I find cool 3d models?</h2>
+						<ul>
+							<li><a href="https://www.thingiverse.com/">Thingiverse</a> (Makerbot)</li>
+							<li><a href="https://www.myminifactory.com/">MyMiniFactory</a></li>
+							<li><a href="https://pinshape.com/">Pinshape</a> (Formlabs)</li>
+							<li><a href="https://www.youmagine.com/">YouMagine</a></li>
+						</ul>
 					</section>
 					<section>
 						<h2>What about other kinds of 3D printers?</h2>
 						<p><a href="#">Formlabs</a> has a pretty good <a href="https://formlabs.com/blog/fdm-vs-sla-vs-sls-how-to-choose-the-right-3d-printing-technology/">guide</a> on the three main 3D printing technologies: FDM, SLA and SLS.</p>
+					</section>
+					<section>
+						<h2>What about 3d printed guns?</h2>
+						<p>This <a href="https://www.wired.com/2015/06/i-made-an-untraceable-ar-15-ghost-gun/">Wired article</a> is the most informative that I've read on the topic, and this <a href="https://arstechnica.com/tech-policy/2018/08/3d-printed-and-cnc-milled-guns-10-questions-you-were-too-afraid-to-ask/">Ars Technica article</a> that draws from it has some additional context.</p>
 					</section>
 					<section>
 						<h2 style="font-size: 1.55em;">Do you have a series of links from a high-velocity course on digital manufacturing?</h2>
